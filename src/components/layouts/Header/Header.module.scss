@@ -1,14 +1,13 @@
-.header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: var(--body-color);
-    z-index: 100;
+
+    // position: fixed;
+    // top: 0;
+    // left: 0;
+    // width: 100%;
+    // background: var(--body-color);
+    // z-index: 100;
     .header_middle {
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 20px 0;
     }
-}

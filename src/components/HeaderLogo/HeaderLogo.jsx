@@ -4,7 +4,7 @@ const HeaderLogo = () => {
   return (
     <>
       <a className={styles.header_logo} href="/">
-        Movies<span>VENNIE</span>
+        Movies<span>T</span>
       </a>
     </>
   );

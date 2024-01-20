@@ -1,9 +1,10 @@
 
 :root {
-  --body-color: #FFFFFF;
-  --text-color: #141824;
-  --main-color: #3D7FFF;
-  --border-gray-color: #e7e7e7;
+  --main-color: #ffb43a;
+  --hover-color: hsl(37, 94%, 57%);
+  --body-color: #1e1e2a;
+  --container-color: #2d2e37;
+  --text-color: #fcfeff;
 }
 * {
   margin: 0;
@@ -19,7 +20,6 @@ body {
   color: var(--text-color);
 }
 a {
-  color: var(--text-color);
   text-decoration: none;
   transition: all 0.3s linear;
 }

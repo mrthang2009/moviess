@@ -4,9 +4,13 @@ import SeriesPage from "../pages/SeriesPage";
 import CartoonPage from "../pages/CartoonPage";
 import ShowsPage from "../pages/ShowsPage";
 import FeaturedPage from "../pages/FeaturedPage";
-import React from 'react';
 export const NavsList = [
   { name: "Trag chủ", page: <HomePage />, url: "/" },
+  {
+    name: "Phim mới cập nhật",
+    page: <FeaturedPage />,
+    url: "/phim-moi-cap-nhat",
+  },
   {
     name: "Phim lẻ",
     page: <SinglePage />,
@@ -26,10 +30,5 @@ export const NavsList = [
     name: "TV Shows",
     page: <ShowsPage />,
     url: "/tv-shows",
-  },
-  {
-    name: "Phim mới cập nhật",
-    page: <FeaturedPage/>,
-    url: "/phim-moi-cap-nhat",
   },
 ];

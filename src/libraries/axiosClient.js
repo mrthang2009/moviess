@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosClient = axios.create({
-  baseURL: process.env.APP_DOMAIN_FRONTEND,
+  baseURL: "https://phimapi.com",
   headers: { "Content-Type": "application/json" },
 });
 
