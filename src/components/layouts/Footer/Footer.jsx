@@ -1,11 +1,13 @@
-import React from 'react'
-import styles from "./Footer.module.scss"
+import styles from "./Footer.module.scss";
+
 const Footer = () => {
   return (
-    <div className={styles.footer}>
-      <p>© Aptech eCommerce. 2022. All Rights Reserved</p>
-    </div>
-  )
-}
+    <footer className={styles.footer}>
+      <p>© MovieVennie All Right Reserved</p>
+    </footer>
+  );
+};
 
-export default Footer
+export default Footer;
+
+
