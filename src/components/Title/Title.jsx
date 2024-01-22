@@ -6,13 +6,16 @@ const Title = ({ label, url }) => {
   const [loadings, setLoadings] = useState([]);
   return (
     <div className={styles.title}>
-      <h1>{label}</h1>
+      <h3>{label}</h3>
       <Button
         type="primary"
+        style={{ backgroundColor: "orange", border: "none" }}
         loading={loadings[0]}
         onClick={() => setLoadings(!loadings)}
       >
-        <a href={url}>Xem thêm</a>
+        <a style={{ color: "whte" }} href={url}>
+          Xem thêm
+        </a>
       </Button>
     </div>
   );

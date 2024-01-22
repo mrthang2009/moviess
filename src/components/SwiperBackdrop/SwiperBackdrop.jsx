@@ -1,5 +1,6 @@
 import styles from "./SwiperBackdrop.module.scss";
 import { Link } from "react-router-dom";
+import { Spin } from "antd";
 // import Swiper core and required modules
 import {
   Navigation,
@@ -68,15 +69,19 @@ const SwiperBackdrop = ({ data }) => {
         speed={1500} // Đặt thời gian mỗi slide chuyển đổi
         autoHeight={true} // Thêm thuộc tính autoHeight
       >
-        {data.map((item) => (
-          <SwiperSlide key={item.name}>
-            <BackdropItem
-              url_backdrop={item.thumb_url}
-              name={item.name}
-              release={item.year}
-            />
-          </SwiperSlide>
-        ))}
+        {data.length > 0 ? (
+          data.map((item) => (
+            <SwiperSlide key={item.name}>
+              <BackdropItem
+                url_backdrop={item.thumb_url}
+                name={item.name}
+                release={item.year}
+              />
+            </SwiperSlide>
+          ))
+        ) : (
+          <Spin size="large" />
+        )}
       </Swiper>
     </div>
   );

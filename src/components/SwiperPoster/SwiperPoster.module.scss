@@ -1,0 +1,45 @@
+.swiper_poster {
+    margin-bottom: 25px;
+    width: 100%;
+
+    .poster_item {
+        cursor: pointer;
+        color: var(--text-color);
+
+        .poster {
+            position: relative;
+            width: 100%;
+            height: 215px;
+            overflow: hidden;
+
+            img {
+                position: absolute;
+                width: 100%;
+                object-fit: cover;
+                z-index: -1;
+            }
+        }
+
+
+        .desc {
+            margin-top: 10px;
+
+            p {
+                // font-weight: bold;
+            }
+            small {
+                color: #FFFFFF;
+            }
+        }
+    }
+}
+
+.poster_item:hover {
+    color: orange;
+
+    .poster {
+        transform: scale(1.1);
+        transition: 0.5s all linear;
+    }
+
+}
