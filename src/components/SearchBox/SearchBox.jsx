@@ -29,7 +29,7 @@ const SearchBox = () => {
           type="text"
           name="search_input"
           id="search_input"
-          placeholder="Search movies"
+          placeholder="Tìm kiếm"
           value={searchValue}
           onChange={handleInputChange}
           onKeyPress={handleKeyPress} // Bắt lấy sự kiện khi nhấn phím Enter
@@ -38,12 +38,12 @@ const SearchBox = () => {
           <FiSearch />
         </i>
       </div>
-      <a className={styles.user} href="">
+      {/* <a className={styles.user} href="">
         <img
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9qcl_uYPM2DjJL_WO1G5gCt5VNdKyN-KezA&usqp=CAU"
           alt=""
         />
-      </a>
+      </a> */}
     </>
   );
 };

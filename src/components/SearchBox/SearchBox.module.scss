@@ -7,7 +7,6 @@
     padding: 8px 15px;
     background: var(--container-color);
     border-radius: 4rem;
-    margin-right: 1rem;
 
     input {
         width: 100%;
@@ -33,8 +32,9 @@
         font-size: 10;
         cursor: pointer;
     }
+
     i:hover {
-        color: rgb(34, 208, 122);
+        color: var(--main-color);
     }
 }
 

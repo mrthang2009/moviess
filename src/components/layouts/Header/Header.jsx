@@ -4,16 +4,16 @@ import HeaderLogo from "../../HeaderLogo/HeaderLogo";
 import NavigationBar from "../../NavigationBar/NavigationBar";
 import SearchBox from "../../SearchBox/SearchBox";
 
-const Header = () => {
+const CustomHeader = () => {
   return (
-    <header className="container">
+    <div className="container">
       <div className={styles.header_middle}>
         <HeaderLogo />
         <NavigationBar />
         <SearchBox />
       </div>
-    </header>
+    </div>
   );
 };
 
-export default Header;
+export default CustomHeader;

@@ -1,6 +1,6 @@
 import styles from "./Footer.module.scss";
 
-const Footer = () => {
+const CustomFooter = () => {
   return (
     <footer className={styles.footer}>
       <p>© MovieVennie All Right Reserved</p>
@@ -8,6 +8,6 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default CustomFooter;
 
 

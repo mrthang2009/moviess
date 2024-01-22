@@ -1,0 +1,13 @@
+.box_main {
+    display: flex;
+    width: 100%;
+    column-gap: 30px;
+margin-top: 15px;
+    .content {
+        width: 70%;
+    }
+
+    .sidebar {
+        width: 30%;
+    }
+}

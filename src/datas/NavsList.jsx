@@ -5,7 +5,7 @@ import CartoonPage from "../pages/CartoonPage";
 import ShowsPage from "../pages/ShowsPage";
 import FeaturedPage from "../pages/FeaturedPage";
 export const NavsList = [
-  { name: "Trag chủ", page: <HomePage />, url: "/" },
+  { name: "Trang chủ", page: <HomePage />, url: "/" },
   {
     name: "Phim mới cập nhật",
     page: <FeaturedPage />,
