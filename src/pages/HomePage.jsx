@@ -3,17 +3,16 @@ import axiosClient from "../libraries/axiosClient";
 import { useEffect, useState, useCallback } from "react";
 import Title from "../components/Title/Title";
 import SwiperBackdrop from "../components/SwiperBackdrop/SwiperBackdrop";
-import { Spin } from "antd";
+// import { Spin } from "antd";
 const HomePage = () => {
   const [featuredMovie, setFeaturedMovie] = useState([]);
 
   const getFeaturedMovie = useCallback(async () => {
     try {
       const res = await axiosClient.get(
-        `/danh-sach/phim-moi-cap-nhat?page=1&limit=20`
+        `/danh-sach/phim-moi-cap-nhat?page=1&limit=10`
       );
-      setFeaturedMovie(res);
-      console.log("««««« featuredMovie »»»»»", featuredMovie);
+      setFeaturedMovie(res.data);
     } catch (error) {
       console.log(error);
     }
@@ -21,49 +20,28 @@ const HomePage = () => {
   useEffect(() => {
     getFeaturedMovie();
   }, []);
+  console.log("««««« featuredMovie »»»»»", featuredMovie);
   return (
     <main className="container">
       <div className={styles.box_main}>
         <div className={styles.content}>
           <section className={styles.section_one}>
-            <Title label="Phim mới cập nhật" url="/phim-moi-cap-nhat" />
+            {/* <Title label="Phim mới cập nhật" url="/phim-moi-cap-nhat" /> */}
             {featuredMovie ? (
-              <SwiperBackdrop data={featuredMovie.results} />
-            ) : (
-              <Spin size="large" />
-            )}
+              <SwiperBackdrop data={featuredMovie.items} />
+            ) : null}
           </section>
           <section className={styles.section_tow}>
             <Title label="Phim lẻ" url="/phim-le" />
-            {featuredMovie ? (
-              <SwiperBackdrop data={featuredMovie.results} />
-            ) : (
-              <Spin size="large" />
-            )}
           </section>
           <section className={styles.section_tow}>
             <Title label="Phim bộ" url="/phim-bo" />
-            {featuredMovie ? (
-              <SwiperBackdrop data={featuredMovie.results} />
-            ) : (
-              <Spin size="large" />
-            )}
           </section>
           <section className={styles.section_one}>
             <Title label="Hoạt hình" url="/hoat-hinh" />
-            {featuredMovie ? (
-              <SwiperBackdrop data={featuredMovie.results} />
-            ) : (
-              <Spin size="large" />
-            )}
           </section>
           <section className={styles.section_tow}>
             <Title label="TV Shows" url="/tv-shows" />
-            {featuredMovie ? (
-              <SwiperBackdrop data={featuredMovie.results} />
-            ) : (
-              <Spin size="large" />
-            )}
           </section>
         </div>
         <div className={styles.sidebar}>ajvcahc ạcbadgvubkbk</div>
