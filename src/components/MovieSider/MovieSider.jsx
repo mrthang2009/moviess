@@ -1,6 +1,8 @@
 import styles from "./MovieSider.module.scss";
 import PropTypes from "prop-types";
 
+const APP_DOMAIN_CDN_IMAGE = "https://img.phimapi.com/";
+
 const MovieSider = ({ url_backdrop, name, realese }) => {
   return (
     <a
@@ -9,7 +11,7 @@ const MovieSider = ({ url_backdrop, name, realese }) => {
       //   onClick={handleItemClick}
     >
       <div className={styles.thumb}>
-        <img src={url_backdrop} alt={name} />
+        <img src={`${APP_DOMAIN_CDN_IMAGE}${url_backdrop}`} alt={name} />
       </div>
       <div className={styles.desc}>
         <strong>{name}</strong>

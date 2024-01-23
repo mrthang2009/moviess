@@ -1,10 +1,10 @@
-import styles from "./stylesPage/HomePage.module.scss";
+// import styles from "./stylesPage/HomePage.module.scss";
 import axiosClient from "../libraries/axiosClient";
 import { useEffect, useState, useCallback } from "react";
 import Title from "../components/Title/Title";
 import SwiperBackdrop from "../components/SwiperBackdrop/SwiperBackdrop";
 import SwiperPoster from "../components/SwiperPoster/SwiperPoster";
-import { Spin } from "antd";
+import { Spin, Col, Row } from "antd";
 import generateRandomInteger from "../untils/randomNumber";
 import MovieSider from "../components/MovieSider/MovieSider";
 const HomePage = () => {
@@ -56,9 +56,7 @@ const HomePage = () => {
   }, []);
   const getTVShows = useCallback(async () => {
     try {
-      const res = await axiosClient.get(
-        `/v1/api/danh-sach/tv-shows?page=1&limit=10`
-      );
+      const res = await axiosClient.get(`/v1/api/danh-sach/tv-shows`);
       setTvShows(res.data.data);
     } catch (error) {
       console.log(error);
@@ -87,69 +85,101 @@ const HomePage = () => {
       getTVShows();
     }
   }, []);
+  console.log("««««« tvShows »»»»»", tvShows);
   return (
     <main className="container">
-      <div className={styles.box_main}>
-        <div className={styles.content}>
+      <Row gutter={16}>
+        <Col span={17}>
           <section>
+            <Title
+              type="section"
+              label="Phim mới cập nhật"
+              url="/phim-moi-cap-nhat"
+            />
+
             {featuredMovie ? (
               <SwiperBackdrop data={featuredMovie.items} />
             ) : (
-              <Spin size="large" />
+              <div
+                style={{
+                  width: "100%",
+                  textAlign: "center",
+                }}
+              >
+                <Spin size="large" />
+              </div>
             )}
           </section>
           <section>
-            <Title label="Phim lẻ" url="/phim-le" />
+            <Title type="section" label="Phim lẻ" url="/phim-le" />
             {singleMovie ? (
               <SwiperPoster data={singleMovie.items} />
             ) : (
-              <Spin size="large" />
+              <div
+                style={{
+                  width: "100%",
+                  textAlign: "center",
+                }}
+              >
+                <Spin size="large" />
+              </div>
             )}
           </section>
           <section>
-            <Title label="Phim bộ" url="/phim-bo" />
+            <Title type="section" label="Phim bộ" url="/phim-bo" />
             {seriesMovie ? (
               <SwiperPoster data={seriesMovie.items} />
             ) : (
-              <Spin size="large" />
+              <div
+                style={{
+                  width: "100%",
+                  textAlign: "center",
+                }}
+              >
+                <Spin size="large" />
+              </div>
             )}
           </section>
           <section>
-            <Title label="Hoạt hình" url="/hoat-hinh" />
+            <Title type="section" label="Hoạt hình" url="/hoat-hinh" />
 
             {cartoon ? (
               <SwiperPoster data={cartoon.items} />
             ) : (
-              <Spin size="large" />
+              <div
+                style={{
+                  width: "100%",
+                  textAlign: "center",
+                }}
+              >
+                <Spin size="large" />
+              </div>
             )}
           </section>
-          <section>
-            <Title label="TV Shows" url="/tv-shows" />
-            {tvShows ? (
-              <SwiperPoster data={tvShows.items} />
-            ) : (
+        </Col>
+        <Col span={7}>
+        <Title label="Shows truyền hình" />
+          {tvShows && tvShows.items ? (
+            tvShows.items.map((item) => (
+              <MovieSider
+                key={item._id}
+                url_backdrop={item.thumb_url}
+                name={item.name}
+                realese={item.year}
+              />
+            ))
+          ) : (
+            <div
+              style={{
+                width: "100%",
+                textAlign: "center",
+              }}
+            >
               <Spin size="large" />
-            )}
-          </section>
-        </div>
-        <div className={styles.sidebar}>
-          <Title label="Phim mới" url="/phim-moi-cap-nhat" />
-          <div className={styles.list_movie_sider}>
-            {featuredMovie && featuredMovie.items ? (
-              featuredMovie.items.map((item) => (
-                <MovieSider
-                  key={item._id}
-                  url_backdrop={item.thumb_url}
-                  name={item.name}
-                  realese={item.year}
-                />
-              ))
-            ) : (
-              <Spin size="large" />
-            )}
-          </div>
-        </div>
-      </div>
+            </div>
+          )}
+        </Col>
+      </Row>
     </main>
   );
 };

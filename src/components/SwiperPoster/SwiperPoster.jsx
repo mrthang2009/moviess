@@ -36,12 +36,12 @@ const SwiperPoster = ({ data }) => {
             spaceBetween: 25,
           },
           768: {
-            slidesPerView: 3,
+            slidesPerView: 4,
             spaceBetween: 15,
           },
           1024: {
-            slidesPerView: 4,
-            spaceBetween: 15,
+            slidesPerView: 6,
+            spaceBetween: 10,
           },
         }}
         autoplay={{

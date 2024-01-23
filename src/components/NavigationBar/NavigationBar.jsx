@@ -14,11 +14,7 @@ const Navigation = () => {
       label: "Trang chủ",
       path: "/",
     },
-    {
-      key: "2",
-      label: "Phim mới cập nhật",
-      path: "/phim-moi-cap-nhat",
-    },
+
     {
       key: "3",
       label: "Phim lẻ",
@@ -35,9 +31,9 @@ const Navigation = () => {
       path: "/hoat-hinh",
     },
     {
-      key: "6",
-      label: "TV Shows",
-      path: "/tv-shows",
+      key: "2",
+      label: "Phim mới cập nhật",
+      path: "/phim-moi-cap-nhat",
     },
   ];
 

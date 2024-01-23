@@ -2,7 +2,6 @@ import styles from "./stylesPage/SinglePage.module.scss";
 import axiosClient from "../libraries/axiosClient";
 import { useEffect, useState, useCallback } from "react";
 import Title from "../components/Title/Title";
-import generateRandomInteger from "../untils/randomNumber";
 import MovieSider from "../components/MovieSider/MovieSider";
 import { Pagination, Spin, Col, Row } from "antd";
 import PosterItem from "../components/PosterItem/PosterItem";
@@ -11,19 +10,17 @@ const LIMIT_PAGE = 24;
 
 const SinglePage = () => {
   const navigate = useNavigate();
-  const [featuredMovie, setFeaturedMovie] = useState([]);
+  const [tvShows, setTvShows] = useState([]);
   const [singleMovie, setSingleMovie] = useState([]);
   const [pagination, setPagination] = useState({
     total: 1,
     page: 1,
     pageSize: LIMIT_PAGE,
   });
-  const getFeaturedMovie = useCallback(async (randomNumber) => {
+  const getTVShows = useCallback(async () => {
     try {
-      const res = await axiosClient.get(
-        `/danh-sach/phim-moi-cap-nhat?page=${randomNumber}&limit=20`
-      );
-      setFeaturedMovie(res.data);
+      const res = await axiosClient.get(`/v1/api/danh-sach/tv-shows`);
+      setTvShows(res.data.data);
     } catch (error) {
       console.log(error);
     }
@@ -42,25 +39,9 @@ const SinglePage = () => {
       console.log(error);
     }
   }, []);
-  // Hàm để kiểm tra xem số ngẫu nhiên đã được lưu trong sessionStorage chưa
-  const isRandomNumber = () => {
-    return sessionStorage.getItem("randomNumber") !== null;
-  };
 
-  // Effect chạy sau mỗi lần render
   useEffect(() => {
-    // Kiểm tra xem đã có số ngẫu nhiên trong sessionStorage chưa
-    if (!isRandomNumber()) {
-      // Nếu chưa có, sinh số ngẫu nhiên và lưu vào sessionStorage
-      const randomValue = generateRandomInteger();
-      sessionStorage.setItem("randomNumber", randomValue);
-    } else {
-      // Nếu đã có, lấy số từ sessionStorage và sử dụng
-      const randomNumber = sessionStorage.getItem("randomNumber");
-      getFeaturedMovie(randomNumber);
-    }
-  }, []);
-  useEffect(() => {
+    getTVShows();
     getSingleMovie(pagination);
     if (pagination.page === 1) {
       navigate(`/phim-le`);
@@ -81,26 +62,32 @@ const SinglePage = () => {
   );
   return (
     <main className="container">
-      <div className={styles.box_main}>
-        <Row gutter={16}>
-          <Col span={16}>
-            <Title label="Phim lẻ" url="/phim-le" />
-            <Row gutter={[16, 16]}>
-              {singleMovie && singleMovie.items ? (
-                singleMovie.items.map((item) => (
-                  <Col span={6} key={item._id} className={styles.posterItem}>
-                    <PosterItem
-                      url_poster={item.poster_url}
-                      name={item.name}
-                      realese={item.year}
-                    />
-                  </Col>
-                ))
-              ) : (
+      <Row gutter={16}>
+        <Col span={17}>
+          <Title label="Phim lẻ" />
+          <Row gutter={[16, 16]}>
+            {singleMovie && singleMovie.items ? (
+              singleMovie.items.map((item) => (
+                <Col span={4} key={item._id} className={styles.posterItem}>
+                  <PosterItem
+                    url_poster={item.poster_url}
+                    name={item.name}
+                    realese={item.year}
+                  />
+                </Col>
+              ))
+            ) : (
+              <div
+                style={{
+                  width: "100%",
+                  textAlign: "center",
+                }}
+              >
                 <Spin size="large" />
-              )}
-            </Row>
-
+              </div>
+            )}
+          </Row>
+          {singleMovie.items? (
             <div className={styles.pagination}>
               <Pagination
                 defaultCurrent={1}
@@ -111,26 +98,34 @@ const SinglePage = () => {
                 showSizeChanger={false}
               />
             </div>
-          </Col>
-          <Col span={8}>
-            <Title label="Phim mới" url="/phim-moi-cap-nhat" />
-            <div className={styles.list_movie_sider}>
-              {featuredMovie && featuredMovie.items ? (
-                featuredMovie.items.map((item) => (
-                  <MovieSider
-                    key={item._id}
-                    url_backdrop={item.thumb_url}
-                    name={item.name}
-                    realese={item.year}
-                  />
-                ))
-              ) : (
+          ) : null}
+        </Col>
+        <Col span={7}>
+          <Title label="Shows truyền hình" />
+
+          <div className={styles.list_movie_sider}>
+            {tvShows && tvShows.items ? (
+              tvShows.items.map((item) => (
+                <MovieSider
+                  key={item._id}
+                  url_backdrop={item.thumb_url}
+                  name={item.name}
+                  realese={item.year}
+                />
+              ))
+            ) : (
+              <div
+                style={{
+                  width: "100%",
+                  textAlign: "center",
+                }}
+              >
                 <Spin size="large" />
-              )}
-            </div>
-          </Col>
-        </Row>
-      </div>
+              </div>
+            )}
+          </div>
+        </Col>
+      </Row>
     </main>
   );
 };

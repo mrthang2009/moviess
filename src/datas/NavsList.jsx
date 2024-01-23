@@ -2,7 +2,6 @@ import HomePage from "../pages/HomePage";
 import SinglePage from "../pages/SinglePage";
 import SeriesPage from "../pages/SeriesPage";
 import CartoonPage from "../pages/CartoonPage";
-import ShowsPage from "../pages/ShowsPage";
 import FeaturedPage from "../pages/FeaturedPage";
 export const NavsList = [
   { name: "Trang chủ", page: <HomePage />, url: "/" },
@@ -26,9 +25,5 @@ export const NavsList = [
     page: <CartoonPage />,
     url: "/hoat-hinh",
   },
-  {
-    name: "TV Shows",
-    page: <ShowsPage />,
-    url: "/tv-shows",
-  },
+
 ];
