@@ -1,5 +1,4 @@
 import styles from "./SwiperPoster.module.scss";
-import { Link } from "react-router-dom";
 import { Spin } from "antd";
 
 // import Swiper core and required modules
@@ -18,33 +17,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import PropTypes from "prop-types";
-const APP_DOMAIN_CDN_IMAGE = "https://img.phimapi.com/";
-const PosterItem = ({ url_poster, name, release }) => {
-  // const navigate = useNavigate();
-  // const handleItemClick = () => {
-  //   navigate(`/movie/${movieId}/${movieTitle}`);
-  // };
-  return (
-    <Link
-      className={styles.poster_item}
-      // to={link_url}
-      // onClick={handleItemClick}
-    >
-      <div className={styles.poster}>
-        <img src={`${APP_DOMAIN_CDN_IMAGE}${url_poster}`} alt={name} />
-      </div>
-      <div className={styles.desc}>
-        <p>{name}</p>
-        <small>{release}</small>
-      </div>
-    </Link>
-  );
-};
-PosterItem.propTypes = {
-  url_poster: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  release: PropTypes.string.isRequired,
-};
+import PosterItem from "../PosterItem/PosterItem";
 const SwiperPoster = ({ data }) => {
   if (!Array.isArray(data)) {
     return null;
@@ -67,7 +40,7 @@ const SwiperPoster = ({ data }) => {
             spaceBetween: 15,
           },
           1024: {
-            slidesPerView: 5,
+            slidesPerView: 4,
             spaceBetween: 15,
           },
         }}

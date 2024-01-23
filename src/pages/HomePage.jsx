@@ -64,7 +64,6 @@ const HomePage = () => {
       console.log(error);
     }
   }, []);
-  useEffect(() => {}, []);
   // Hàm để kiểm tra xem số ngẫu nhiên đã được lưu trong sessionStorage chưa
   const isRandomNumber = () => {
     return sessionStorage.getItem("randomNumber") !== null;
@@ -88,7 +87,6 @@ const HomePage = () => {
       getTVShows();
     }
   }, []);
-  console.log("««««« featuredMovie »»»»»", featuredMovie);
   return (
     <main className="container">
       <div className={styles.box_main}>
