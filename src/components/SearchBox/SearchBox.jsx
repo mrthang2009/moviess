@@ -14,13 +14,13 @@ const SearchBox = () => {
   const handleKeyPress = () => {
     if (event.key === "Enter") {
       // Nếu nhấn Enter, thực hiện chuyển trang
-      navigate(`/search?query=${encodeURIComponent(searchValue)}`);
+      navigate(`/tim-kiem?keyword=${searchValue.replace(/\s+/g, "-")}`);
     }
   };
 
   const handleSearchClick = () => {
     // Thực hiện chuyển trang khi nhấn vào biểu tượng tìm kiếm
-    navigate(`/search?query=${encodeURIComponent(searchValue)}`);
+    navigate(`/tim-kiem?keyword=${searchValue.replace(/\s+/g, "-")}`);
   };
   return (
     <>
@@ -29,7 +29,7 @@ const SearchBox = () => {
           type="text"
           name="search_input"
           id="search_input"
-          placeholder="Tìm kiếm"
+          placeholder="Tìm kiếm phim"
           value={searchValue}
           onChange={handleInputChange}
           onKeyPress={handleKeyPress} // Bắt lấy sự kiện khi nhấn phím Enter

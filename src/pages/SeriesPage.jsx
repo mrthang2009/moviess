@@ -72,7 +72,8 @@ const SeriesPage = () => {
                   <PosterItem
                     url_poster={item.poster_url}
                     name={item.name}
-                    realese={item.year}
+                    quality={item.quality}
+                    lang={item.lang}
                   />
                 </Col>
               ))

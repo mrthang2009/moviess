@@ -1,9 +1,10 @@
 import "./App.css";
-import { Routes, Route} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { NavsList } from "./datas/NavsList";
 import Layout from "./components/layouts/Layout/Layout";
 import { Helmet } from "react-helmet";
 import MovieDetailPage from "./pages/MovieDetailPage";
+import SearchPage from "./pages/SearchPage";
 // Lấy URL của trang hiện tại
 const currentPath = window.location.pathname;
 // Tìm logo tương ứng với URL trang hiện tại
@@ -30,11 +31,11 @@ const App = () => {
           {NavsList.map((item) => (
             <Route key={item.name} path={item.url} element={item.page} />
           ))}
-          {/* Điều hướnsg đến trang chi tiết mỗi phim */}
           <Route
-            path="/movie/:movieId/:movieTitle"
-            element={<MovieDetailPage/>}
+            path="/:movieTitle"
+            element={<MovieDetailPage />}
           />
+          <Route path="/tim-kiem" element={<SearchPage />} />
         </Route>
       </Routes>
     </>
@@ -42,5 +43,3 @@ const App = () => {
 };
 
 export default App;
-
-

@@ -85,7 +85,6 @@ const HomePage = () => {
       getTVShows();
     }
   }, []);
-  console.log("««««« tvShows »»»»»", tvShows);
   return (
     <main className="container">
       <Row gutter={16}>

@@ -46,6 +46,21 @@
                 }
             }
         }
+        .tag_hot {
+            display: inline-block;
+            color: var(--text-color);
+            background-color: red;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 160%;
+            position: absolute;
+            top: 5px;
+            left: 5px;
+
+            small {
+                margin: 0 4px;
+            }
+        }
     }
 }
 

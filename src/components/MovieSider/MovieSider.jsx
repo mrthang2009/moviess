@@ -23,6 +23,6 @@ const MovieSider = ({ url_backdrop, name, realese }) => {
 MovieSider.propTypes = {
   url_backdrop: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  realese: PropTypes.string.isRequired,
+  realese: PropTypes.number.isRequired,
 };
 export default MovieSider;

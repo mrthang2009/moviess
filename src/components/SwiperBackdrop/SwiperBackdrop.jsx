@@ -28,6 +28,9 @@ const BackdropItem = ({ url_backdrop, name, release }) => {
       // onClick={handleItemClick}
     >
       <img src={url_backdrop} alt={name} />
+      <div className={styles.tag_hot}>
+        <small>Nổi bật</small>
+      </div>
       <div className={styles.desc}>
         <strong>{name}</strong>
         <div className={styles.tag}>
@@ -42,7 +45,7 @@ const BackdropItem = ({ url_backdrop, name, release }) => {
 BackdropItem.propTypes = {
   url_backdrop: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  release: PropTypes.string.isRequired,
+  release: PropTypes.number.isRequired,
 };
 const SwiperBackdrop = ({ data }) => {
   if (!Array.isArray(data)) {
