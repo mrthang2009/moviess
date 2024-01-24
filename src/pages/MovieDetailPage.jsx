@@ -1,4 +1,4 @@
-import styles from "./stylesPage/SinglePage.module.scss";
+import styles from "./stylesPage/MovieDetailPage.module.scss"
 import axiosClient from "../libraries/axiosClient";
 import { useEffect, useState, useCallback } from "react";
 import Title from "../components/Title/Title";
@@ -22,7 +22,7 @@ const MovieDetailPage = () => {
   const getDetailMovie = useCallback(async (slug) => {
     try {
       const res = await axiosClient.get(`/phim/${slug}`);
-      setDetailMovie(res);
+      setDetailMovie(res.data);
     } catch (error) {
       console.log(error);
     }
@@ -37,31 +37,8 @@ const MovieDetailPage = () => {
     <main className="container">
       <Row gutter={16}>
         <Col span={17}>
-          <Title label="Phim lẻ" />
           <Row gutter={[16, 16]}>
-            {/* {detailMovie && detailMovie.items ? (
-              detailMovie.items.map((item) => (
-                <Col span={4} key={item._id} className={styles.posterItem}>
-                  <PosterItem
-                    slug={item.slug}
-                    url_poster={item.poster_url}
-                    name={item.name}
-                    quality={item.quality}
-                    lang={item.lang}
-                    typeMovie={item.type}
-                  />
-                </Col>
-              ))
-            ) : (
-              <div
-                style={{
-                  width: "100%",
-                  textAlign: "center",
-                }}
-              >
-                <Spin size="large" />
-              </div>
-            )} */}
+            
           </Row>
         </Col>
         <Col span={7}>
