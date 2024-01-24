@@ -99,11 +99,13 @@ const SearchPage = () => {
                 paginatedData.map((item) => (
                   <Col span={4} key={item._id}>
                     <PosterItem
-                      url_poster={item.poster_url}
-                      name={item.name}
-                      quality={item.quality}
-                      lang={item.lang}
-                    />
+                    slug={item.slug}
+                    url_poster={item.poster_url}
+                    name={item.name}
+                    quality={item.quality}
+                    lang={item.lang}
+                    typeMovie={item.type}
+                  />
                   </Col>
                 ))
               ) : (

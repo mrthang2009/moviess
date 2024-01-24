@@ -70,10 +70,12 @@ const SeriesPage = () => {
               seriesMovie.items.map((item) => (
                 <Col span={4} key={item._id} className={styles.posterItem}>
                   <PosterItem
+                    slug={item.slug}
                     url_poster={item.poster_url}
                     name={item.name}
                     quality={item.quality}
                     lang={item.lang}
+                    typeMovie={item.type}
                   />
                 </Col>
               ))

@@ -31,11 +31,13 @@ const App = () => {
           {NavsList.map((item) => (
             <Route key={item.name} path={item.url} element={item.page} />
           ))}
-          <Route
-            path="/:movieTitle"
-            element={<MovieDetailPage />}
-          />
           <Route path="/tim-kiem" element={<SearchPage />} />
+
+          {/* Route cho trường hợp có typeMovie */}
+          <Route path="/:typeMovie/:slug" element={<MovieDetailPage />} />
+          {/* Route cho trường hợp không có typeMovie */}
+          <Route path="/:slug" element={<MovieDetailPage />} />
+
         </Route>
       </Routes>
     </>

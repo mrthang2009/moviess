@@ -71,6 +71,7 @@ const SinglePage = () => {
                 <Col span={4} key={item._id} className={styles.posterItem}>
                   <PosterItem
                     type="featuredMovie"
+                    slug={item.slug}
                     url_poster={item.poster_url}
                     name={item.name}
                     quality={item.quality}
