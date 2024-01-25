@@ -81,17 +81,17 @@ const CartoonPage = () => {
               ))
             ) : (
               <div
-              style={{
-                width: "100%",
-                textAlign: "center",
-              }}
-            >
-              <Spin size="large" />
-            </div>
+                style={{
+                  width: "100%",
+                  textAlign: "center",
+                }}
+              >
+                <Spin size="large" />
+              </div>
             )}
           </Row>
 
-          {cartoon.items? (
+          {cartoon.items ? (
             <div className={styles.pagination}>
               <Pagination
                 defaultCurrent={1}
@@ -105,7 +105,7 @@ const CartoonPage = () => {
           ) : null}
         </Col>
         <Col span={7}>
-        <Title label="Shows truyền hình" />
+          {/* <Title label="Shows truyền hình" /> */}
           <div className={styles.list_movie_sider}>
             {tvShows && tvShows.items ? (
               tvShows.items.map((item) => (
@@ -114,6 +114,7 @@ const CartoonPage = () => {
                   url_backdrop={item.thumb_url}
                   name={item.name}
                   realese={item.year}
+                  slug={item.slug}
                 />
               ))
             ) : (

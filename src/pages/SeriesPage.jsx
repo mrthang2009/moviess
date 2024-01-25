@@ -105,7 +105,7 @@ const SeriesPage = () => {
           ) : null}
         </Col>
         <Col span={7}>
-        <Title label="Shows truyền hình" />
+        {/* <Title label="Shows truyền hình" /> */}
 
           <div className={styles.list_movie_sider}>
             {tvShows && tvShows.items ? (
@@ -115,6 +115,7 @@ const SeriesPage = () => {
                   url_backdrop={item.thumb_url}
                   name={item.name}
                   realese={item.year}
+                  slug={item.slug}
                 />
               ))
             ) : (

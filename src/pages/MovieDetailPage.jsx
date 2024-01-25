@@ -1,7 +1,6 @@
 import styles from "./stylesPage/MovieDetailPage.module.scss";
 import axiosClient from "../libraries/axiosClient";
 import { useEffect, useState, useCallback } from "react";
-import Title from "../components/Title/Title";
 import MovieSider from "../components/MovieSider/MovieSider";
 import { Spin, Col, Row } from "antd";
 import { useParams } from "react-router-dom";
@@ -46,7 +45,7 @@ const MovieDetailPage = () => {
       <main className="container">
         <Row gutter={16}>
           <Col span={17}>
-            <section className={styles.p}>
+            <section>
               {detailMovie && detailMovie.movie ? (
                 <PosterMovie
                   url_backdrop={detailMovie.movie.thumb_url}
@@ -57,6 +56,12 @@ const MovieDetailPage = () => {
                   country={detailMovie.movie.country}
                   category={detailMovie.movie.category}
                   time={detailMovie.movie.time}
+                  type={detailMovie.movie.type}
+                  quality={detailMovie.movie.quality}
+                  lang={detailMovie.movie.lang}
+                  status={detailMovie.movie.status}
+                  episode_current={detailMovie.movie.episode_current}
+                  episode_total={detailMovie.movie.episode_total}
                 />
               ) : (
                 <div
@@ -71,7 +76,7 @@ const MovieDetailPage = () => {
             </section>
           </Col>
           <Col span={7}>
-            <Title label="Shows truyền hình" />
+            {/* <Title label="Shows truyền hình" /> */}
             <div className={styles.list_movie_sider}>
               {tvShows && tvShows.items ? (
                 tvShows.items.map((item) => (
@@ -80,6 +85,7 @@ const MovieDetailPage = () => {
                     url_backdrop={item.thumb_url}
                     name={item.name}
                     realese={item.year}
+                    slug={item.slug}
                   />
                 ))
               ) : (

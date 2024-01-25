@@ -62,6 +62,21 @@ const SinglePage = () => {
   );
   return (
     <main className="container">
+      {/* <Breadcrumb
+        items={[
+          {
+            href: "/",
+            title: "Trang chủ",
+          },
+          {
+            href: "/phim-le",
+            title: <span>Application List</span>,
+          },
+          {
+            title: "Application",
+          },
+        ]}
+      /> */}
       <Row gutter={16}>
         <Col span={17}>
           <Title label="Phim lẻ" />
@@ -104,7 +119,7 @@ const SinglePage = () => {
           ) : null}
         </Col>
         <Col span={7}>
-          <Title label="Shows truyền hình" />
+          {/* <Title label="Shows truyền hình" /> */}
 
           <div className={styles.list_movie_sider}>
             {tvShows && tvShows.items ? (
@@ -114,6 +129,7 @@ const SinglePage = () => {
                   url_backdrop={item.thumb_url}
                   name={item.name}
                   realese={item.year}
+                  slug={item.slug}
                 />
               ))
             ) : (

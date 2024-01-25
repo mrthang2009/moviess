@@ -24,6 +24,7 @@ const HomePage = () => {
       console.log(error);
     }
   }, []);
+  console.log("««««« featuredMovie »»»»»", featuredMovie);
   const getSingleMovie = useCallback(async (randomNumber) => {
     try {
       const res = await axiosClient.get(
@@ -156,7 +157,7 @@ const HomePage = () => {
           </section>
         </Col>
         <Col span={7}>
-        <Title label="Shows truyền hình" />
+          {/* <Title label="Shows truyền hình" /> */}
           {tvShows && tvShows.items ? (
             tvShows.items.map((item) => (
               <MovieSider
@@ -164,6 +165,7 @@ const HomePage = () => {
                 url_backdrop={item.thumb_url}
                 name={item.name}
                 realese={item.year}
+                slug={item.slug}
               />
             ))
           ) : (

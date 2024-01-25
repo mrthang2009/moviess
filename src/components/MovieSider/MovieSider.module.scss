@@ -6,10 +6,12 @@
     column-gap: 10px;
     cursor: pointer;
     color: var(--text-color);
+    border-radius: 10px;
 
     .thumb {
         width: 40%;
         overflow: hidden;
+        border-radius: 10px;
 
         img {
             height: 100%;

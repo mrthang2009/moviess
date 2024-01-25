@@ -3,6 +3,8 @@ import styles from "./PosterItem.module.scss";
 import PropTypes from "prop-types";
 import { PlayCircleOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
+import { Tag } from "antd";
+
 const APP_DOMAIN_CDN_IMAGE = "https://img.phimapi.com/";
 
 const PosterItem = ({
@@ -14,7 +16,6 @@ const PosterItem = ({
   quality,
   lang,
 }) => {
-  
   let converTypeMovie = "";
 
   if (typeMovie === "single") {
@@ -53,14 +54,11 @@ const PosterItem = ({
             alt={name}
           />
           {type == "featuredMovie" ? (
-            <div className={styles.tag_hot}>
-              <small>Nổi bật</small>
-            </div>
+            <Tag className={styles.tag_hot}>
+              <span>Nổi bật</span>
+            </Tag>
           ) : (
-            <div className={styles.tags}>
-              <small>{quality}</small>
-              <small>{lang}</small>
-            </div>
+            <Tag className={styles.tags}>{`${quality} ${lang}`}</Tag>
           )}
         </div>
         <div className={styles.play_icon}>

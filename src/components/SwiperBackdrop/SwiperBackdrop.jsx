@@ -1,6 +1,6 @@
 import styles from "./SwiperBackdrop.module.scss";
-import { Link } from "react-router-dom";
-import { Spin } from "antd";
+import { useNavigate } from "react-router-dom";
+import { Spin, Tag } from "antd";
 // import Swiper core and required modules
 import {
   Navigation,
@@ -16,21 +16,19 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import PropTypes from "prop-types";
 import { PlayCircleOutlined } from "@ant-design/icons";
-const BackdropItem = ({ url_backdrop, name, release }) => {
-  // const navigate = useNavigate();
-  // const handleItemClick = () => {
-  //   navigate(`/movie/${movieId}/${movieTitle}`);
-  // };
+const BackdropItem = ({ slug, url_backdrop, name, release }) => {
+  const navigate = useNavigate();
+  const handleItemClick = () => {
+    navigate(`/${slug}`);
+  };
   return (
-    <Link
+    <a
       className={styles.backdrop_item}
-      // to={link_url}
-      // onClick={handleItemClick}
+      href={`/${slug}`}
+      onClick={handleItemClick}
     >
       <img src={url_backdrop} alt={name} />
-      <div className={styles.tag_hot}>
-        <small>Nổi bật</small>
-      </div>
+      <Tag className={styles.tag_hot}>Nổi bật</Tag>
       <div className={styles.desc}>
         <strong>{name}</strong>
         <div className={styles.tag}>
@@ -38,12 +36,13 @@ const BackdropItem = ({ url_backdrop, name, release }) => {
           <p>Phát hành {release}</p>
         </div>
       </div>
-    </Link>
+    </a>
   );
 };
 
 BackdropItem.propTypes = {
   url_backdrop: PropTypes.string.isRequired,
+  slug: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   release: PropTypes.number.isRequired,
 };
@@ -73,15 +72,18 @@ const SwiperBackdrop = ({ data }) => {
         autoHeight={true} // Thêm thuộc tính autoHeight
       >
         {data.length > 0 ? (
-          data.map((item) => (
-            <SwiperSlide key={item.name}>
-              <BackdropItem
-                url_backdrop={item.thumb_url}
-                name={item.name}
-                release={item.year}
-              />
-            </SwiperSlide>
-          ))
+          data.map((item) =>
+            item.thumb_url ? (
+              <SwiperSlide key={item.name}>
+                <BackdropItem
+                  slug={item.slug}
+                  url_backdrop={item.thumb_url}
+                  name={item.name}
+                  release={item.year}
+                />
+              </SwiperSlide>
+            ) : null
+          )
         ) : (
           <Spin size="large" />
         )}
