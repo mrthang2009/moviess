@@ -77,7 +77,6 @@ const HomePage = () => {
     } else {
       // Nếu đã có, lấy số từ sessionStorage và sử dụng
       const randomNumber = sessionStorage.getItem("randomNumber");
-      console.log("Số ngẫu nhiên đã có:", randomNumber);
       getFeaturedMovie(randomNumber);
       getSingleMovie(randomNumber);
       getSeriesMovie(randomNumber);
