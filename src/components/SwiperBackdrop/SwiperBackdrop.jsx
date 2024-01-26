@@ -73,7 +73,7 @@ const SwiperBackdrop = ({ data }) => {
       >
         {data.length > 0 ? (
           data.map((item) =>
-            item.thumb_url ? (
+            item.thumb_url != " " ? (
               <SwiperSlide key={item.name}>
                 <BackdropItem
                   slug={item.slug}
@@ -85,7 +85,14 @@ const SwiperBackdrop = ({ data }) => {
             ) : null
           )
         ) : (
-          <Spin size="large" />
+          <div
+            style={{
+              width: "100%",
+              textAlign: "center",
+            }}
+          >
+            <Spin size="large" />
+          </div>
         )}
       </Swiper>
     </div>

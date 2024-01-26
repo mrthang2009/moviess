@@ -33,7 +33,7 @@ const SwiperPoster = ({ data }) => {
           // Thiết lập số lượng slide trên mỗi breakpoint
           425: {
             slidesPerView: 2,
-            spaceBetween: 25,
+            spaceBetween: 20,
           },
           768: {
             slidesPerView: 4,
@@ -50,20 +50,29 @@ const SwiperPoster = ({ data }) => {
         }}
       >
         {data.length > 0 ? (
-          data.map((item) => (
-            <SwiperSlide key={item._id}>
-              <PosterItem
-                slug={item.slug}
-                url_poster={item.poster_url}
-                name={item.name}
-                quality={item.quality}
-                lang={item.lang}
-                typeMovie={item.type}
-              />
-            </SwiperSlide>
-          ))
+          data.map((item) =>
+            item.poster_url != " " ? (
+              <SwiperSlide key={item._id}>
+                <PosterItem
+                  slug={item.slug}
+                  url_poster={item.poster_url}
+                  name={item.name}
+                  quality={item.quality}
+                  lang={item.lang}
+                  typeMovie={item.type}
+                />
+              </SwiperSlide>
+            ) : null
+          )
         ) : (
-          <Spin size="large" />
+          <div
+            style={{
+              width: "100%",
+              textAlign: "center",
+            }}
+          >
+            <Spin size="large" />
+          </div>
         )}
       </Swiper>
     </div>

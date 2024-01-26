@@ -8,6 +8,8 @@ import { Spin, Col, Row, Divider } from "antd";
 import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import VideoPlayer from "../components/VideoPlayer/VideoPlayer";
+import PosterItem from "../components/PosterItem/PosterItem";
+import Title from "../components/Title/Title";
 
 const WatchMoviepage = () => {
   const { slug } = useParams();
@@ -54,6 +56,22 @@ const WatchMoviepage = () => {
     const randomNumber = generateRandomInteger();
     getFeaturedMovie(randomNumber);
   }, [slug]);
+  // Hàm để kiểm tra xem số ngẫu nhiên đã được lưu trong sessionStorage chưa
+  const isRandomNumber = () => {
+    return sessionStorage.getItem("randomNumber") !== null;
+  };
+  useEffect(() => {
+    // Kiểm tra xem đã có số ngẫu nhiên trong sessionStorage chưa
+    if (!isRandomNumber()) {
+      // Nếu chưa có, sinh số ngẫu nhiên và lưu vào sessionStorage
+      const randomValue = generateRandomInteger();
+      sessionStorage.setItem("randomNumber", randomValue);
+    } else {
+      // Nếu đã có, lấy số từ sessionStorage và sử dụng
+      const randomNumber = sessionStorage.getItem("randomNumber");
+      getFeaturedMovie(randomNumber);
+    }
+  }, []);
 
   useEffect(() => {
     if (detailMovie.episodes && detailMovie.episodes.length > 0) {
@@ -82,7 +100,9 @@ const WatchMoviepage = () => {
       setSelectedEpisodeObject(null);
     }
   }, [detailMovie.episodes, selectedServer, selectedEpisode]);
-
+  const shuffleArray = (array) => {
+    return array.slice().sort(() => Math.random() - 0.5);
+  };
   return (
     <>
       <Helmet>
@@ -94,7 +114,7 @@ const WatchMoviepage = () => {
       </Helmet>
       <main className="container">
         <Row gutter={16}>
-          <Col span={17}>
+          <Col xs={24} sm={24} md={24} lg={16} xl={17}>
             <section>
               {selectedEpisodeObject ? (
                 <VideoPlayer linkEmbed={selectedEpisodeObject.link_embed} />
@@ -161,7 +181,28 @@ const WatchMoviepage = () => {
             <section>
               <Row gutter={[16, 16]}>
                 {featuredMovie && featuredMovie.items ? (
-                  null
+                  shuffleArray(featuredMovie.items)
+                    .slice(0, 6)
+                    .map((item) => (
+                      <Col
+                        xs={12}
+                        sm={12}
+                        md={6}
+                        lg={4}
+                        xl={4}
+                        key={item._id}
+                        className={styles.posterItem}
+                      >
+                        <PosterItem
+                          type="featuredMovie"
+                          slug={item.slug}
+                          url_poster={item.poster_url}
+                          name={item.name}
+                          quality={item.quality}
+                          lang={item.lang}
+                        />
+                      </Col>
+                    ))
                 ) : (
                   <div
                     style={{
@@ -175,18 +216,22 @@ const WatchMoviepage = () => {
               </Row>
             </section>
           </Col>
-          <Col span={7}>
-            <div className={styles.list_movie_sider}>
+          <Col xs={24} sm={24} md={24} lg={8} xl={7}>
+            <Title label="Shows truyền hình" />
+            <Row gutter={[16, 16]}>
               {tvShows && tvShows.items ? (
-                tvShows.items.map((item) => (
-                  <MovieSider
-                    key={item._id}
-                    url_backdrop={item.thumb_url}
-                    name={item.name}
-                    realese={item.year}
-                    slug={item.slug}
-                  />
-                ))
+                tvShows.items
+                  .sort(() => Math.random() - 0.5)
+                  .map((item) => (
+                    <Col xs={24} sm={24} md={12} lg={24} xl={24} key={item._id}>
+                      <MovieSider
+                        url_backdrop={item.thumb_url}
+                        name={item.name}
+                        realese={item.year}
+                        slug={item.slug}
+                      />
+                    </Col>
+                  ))
               ) : (
                 <div
                   style={{
@@ -197,7 +242,7 @@ const WatchMoviepage = () => {
                   <Spin size="large" />
                 </div>
               )}
-            </div>
+            </Row>
           </Col>
         </Row>
       </main>

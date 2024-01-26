@@ -1,6 +1,7 @@
 import styles from "./stylesPage/MovieDetailPage.module.scss";
 import axiosClient from "../libraries/axiosClient";
 import generateRandomInteger from "../untils/randomNumber";
+import Title from "../components/Title/Title";
 
 import { useEffect, useState, useCallback } from "react";
 import MovieSider from "../components/MovieSider/MovieSider";
@@ -113,7 +114,7 @@ const MovieDetailPage = () => {
       </Helmet>
       <main className="container">
         <Row gutter={16}>
-          <Col span={17}>
+          <Col xs={24} sm={24} md={24} lg={16} xl={17}>
             <section>
               {detailMovie && detailMovie.movie ? (
                 <PosterMovie
@@ -198,20 +199,21 @@ const MovieDetailPage = () => {
               </Row>
             </section>
           </Col>
-          <Col span={7}>
-            {/* <Title label="Shows truyền hình" /> */}
-            <div className={styles.list_movie_sider}>
+          <Col xs={24} sm={24} md={24} lg={8} xl={7}>
+            <Title label="Shows truyền hình" />
+            <Row gutter={[16, 16]}>
               {tvShows && tvShows.items ? (
                 tvShows.items
                   .sort(() => Math.random() - 0.5)
                   .map((item) => (
-                    <MovieSider
-                      key={item._id}
-                      url_backdrop={item.thumb_url}
-                      name={item.name}
-                      realese={item.year}
-                      slug={item.slug}
-                    />
+                    <Col xs={24} sm={24} md={12} lg={24} xl={24} key={item._id}>
+                      <MovieSider
+                        url_backdrop={item.thumb_url}
+                        name={item.name}
+                        realese={item.year}
+                        slug={item.slug}
+                      />
+                    </Col>
                   ))
               ) : (
                 <div
@@ -223,7 +225,7 @@ const MovieDetailPage = () => {
                   <Spin size="large" />
                 </div>
               )}
-            </div>
+            </Row>
           </Col>
         </Row>
       </main>

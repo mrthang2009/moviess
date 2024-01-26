@@ -87,7 +87,7 @@ const HomePage = () => {
   return (
     <main className="container">
       <Row gutter={16}>
-        <Col span={17}>
+        <Col xs={24} sm={24} md={24} lg={16} xl={17}>
           <section>
             <Title
               type="section"
@@ -155,30 +155,33 @@ const HomePage = () => {
             )}
           </section>
         </Col>
-        <Col span={7}>
-          {/* <Title label="Shows truyền hình" /> */}
-          {tvShows && tvShows.items ? (
-            tvShows.items
-            .sort(() => Math.random() - 0.5)
-            .map((item) => (
-              <MovieSider
-                key={item._id}
-                url_backdrop={item.thumb_url}
-                name={item.name}
-                realese={item.year}
-                slug={item.slug}
-              />
-            ))
-          ) : (
-            <div
-              style={{
-                width: "100%",
-                textAlign: "center",
-              }}
-            >
-              <Spin size="large" />
-            </div>
-          )}
+        <Col xs={24} sm={24} md={24} lg={8} xl={7}>
+          <Title label="Shows truyền hình" />
+          <Row gutter={[16, 16]}>
+            {tvShows && tvShows.items ? (
+              tvShows.items
+                .sort(() => Math.random() - 0.5)
+                .map((item) => (
+                  <Col xs={24} sm={24} md={12} lg={24} xl={24} key={item._id} >
+                    <MovieSider
+                      url_backdrop={item.thumb_url}
+                      name={item.name}
+                      realese={item.year}
+                      slug={item.slug}
+                    />
+                  </Col>
+                ))
+            ) : (
+              <div
+                style={{
+                  width: "100%",
+                  textAlign: "center",
+                }}
+              >
+                <Spin size="large" />
+              </div>
+            )}
+          </Row>
         </Col>
       </Row>
     </main>

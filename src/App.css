@@ -8,9 +8,9 @@
 }
 
 /* CSS cho trạng thái tablet */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 769px) {
   .container {
-    margin: 10px;
+    margin:  0 15px;
   }
 }
 
