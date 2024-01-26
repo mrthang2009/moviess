@@ -1,7 +1,7 @@
 import styles from "./PosterMovie.module.scss";
 import PropTypes from "prop-types";
 import { Col, Row, Tag, Button } from "antd";
-
+import { useNavigate } from "react-router-dom";
 const PosterMovie = ({
   url_backdrop,
   url_poster,
@@ -17,7 +17,12 @@ const PosterMovie = ({
   status,
   episode_current,
   episode_total,
+  slug
 }) => {
+  const navigate = useNavigate();
+  const hanldClick = () => {
+    navigate(`/xem-phim/${slug}`);
+  };
   return (
     <div className={styles.poster_movie}>
       {url_backdrop == "" ? null : <img src={url_backdrop} alt={name} />}
@@ -68,7 +73,12 @@ const PosterMovie = ({
             </div>
           ) : null}
           <p>Thời gian: {time}</p>
-          <Button type="primary" danger style={{ fontWeight: "bold" }}>
+          <Button
+            type="primary"
+            danger
+            style={{ fontWeight: "bold" }}
+            onClick={hanldClick}
+          >
             XEM PHIM
           </Button>
         </Col>
@@ -90,7 +100,8 @@ PosterMovie.propTypes = {
   release: PropTypes.number,
   country: PropTypes.array.isRequired,
   category: PropTypes.array.isRequired,
-  time: PropTypes.array,
+  time: PropTypes.string,
+  slug: PropTypes.string,
 };
 
 export default PosterMovie;

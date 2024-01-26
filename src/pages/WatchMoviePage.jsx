@@ -1,4 +1,4 @@
-import styles from "./stylesPage/MovieDetailPage.module.scss";
+import styles from "./stylesPage/WatchMoviePage.module.scss";
 import axiosClient from "../libraries/axiosClient";
 import generateRandomInteger from "../untils/randomNumber";
 
@@ -9,7 +9,7 @@ import { useParams } from "react-router-dom";
 import PosterMovie from "../components/PosterMovie/PosterMovie";
 import { Helmet } from "react-helmet"; // import PosterItem from "../components/PosterItem/PosterItem";
 import PosterItem from "../components/PosterItem/PosterItem";
-const MovieDetailPage = () => {
+const WatchMoviepage = () => {
   const { slug } = useParams();
   const [selectedKey, setSelectedKey] = useState("1"); // Sử dụng state để lưu trạng thái option được chọn
   const [tvShows, setTvShows] = useState([]);
@@ -131,7 +131,6 @@ const MovieDetailPage = () => {
                   status={detailMovie.movie.status}
                   episode_current={detailMovie.movie.episode_current}
                   episode_total={detailMovie.movie.episode_total}
-                  slug={detailMovie.movie.slug}
                 />
               ) : (
                 <div
@@ -231,4 +230,4 @@ const MovieDetailPage = () => {
   );
 };
 
-export default MovieDetailPage;
+export default WatchMoviepage;

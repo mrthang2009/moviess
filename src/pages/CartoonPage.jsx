@@ -108,15 +108,17 @@ const CartoonPage = () => {
           {/* <Title label="Shows truyền hình" /> */}
           <div className={styles.list_movie_sider}>
             {tvShows && tvShows.items ? (
-              tvShows.items.map((item) => (
-                <MovieSider
-                  key={item._id}
-                  url_backdrop={item.thumb_url}
-                  name={item.name}
-                  realese={item.year}
-                  slug={item.slug}
-                />
-              ))
+              tvShows.items
+                .sort(() => Math.random() - 0.5)
+                .map((item) => (
+                  <MovieSider
+                    key={item._id}
+                    url_backdrop={item.thumb_url}
+                    name={item.name}
+                    realese={item.year}
+                    slug={item.slug}
+                  />
+                ))
             ) : (
               <div
                 style={{

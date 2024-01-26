@@ -5,6 +5,7 @@ import Layout from "./components/layouts/Layout/Layout";
 import { Helmet } from "react-helmet";
 import MovieDetailPage from "./pages/MovieDetailPage";
 import SearchPage from "./pages/SearchPage";
+import WatchMoviepage from "./pages/WatchMoviePage";
 // Lấy URL của trang hiện tại
 const currentPath = window.location.pathname;
 // Tìm logo tương ứng với URL trang hiện tại
@@ -37,7 +38,7 @@ const App = () => {
           <Route path="/:typeMovie/:slug" element={<MovieDetailPage />} />
           {/* Route cho trường hợp không có typeMovie */}
           <Route path="/:slug" element={<MovieDetailPage />} />
-
+          <Route path="/xem-phim/:slug" element={<WatchMoviepage />} />
         </Route>
       </Routes>
     </>

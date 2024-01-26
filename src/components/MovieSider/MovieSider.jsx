@@ -29,6 +29,6 @@ MovieSider.propTypes = {
   url_backdrop: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   realese: PropTypes.number.isRequired,
-  slug: PropTypes.number.isRequired,
+  slug: PropTypes.string.isRequired,
 };
 export default MovieSider;

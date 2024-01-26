@@ -123,7 +123,9 @@ const SinglePage = () => {
 
           <div className={styles.list_movie_sider}>
             {tvShows && tvShows.items ? (
-              tvShows.items.map((item) => (
+              tvShows.items
+              .sort(() => Math.random() - 0.5)
+              .map((item) => (
                 <MovieSider
                   key={item._id}
                   url_backdrop={item.thumb_url}
