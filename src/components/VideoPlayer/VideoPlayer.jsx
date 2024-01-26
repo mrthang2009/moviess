@@ -1,4 +1,4 @@
-import ReactPlayer from "react-player";
+import ReactPlayer from 'react-player';
 import PropTypes from "prop-types";
 const VideoPlayer = ({ linkEmbed }) => {
   return (
@@ -13,6 +13,6 @@ const VideoPlayer = ({ linkEmbed }) => {
   );
 };
 VideoPlayer.propTypes = {
-  linkEmbed: PropTypes.string.isRequired,
-};
+    linkEmbed: PropTypes.string.isRequired,
+  };
 export default VideoPlayer;

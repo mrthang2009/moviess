@@ -6,15 +6,18 @@ import { useEffect, useState, useCallback } from "react";
 import MovieSider from "../components/MovieSider/MovieSider";
 import { Spin, Col, Row, Divider } from "antd";
 import { useParams } from "react-router-dom";
-import PosterMovie from "../components/PosterMovie/PosterMovie";
-import { Helmet } from "react-helmet"; // import PosterItem from "../components/PosterItem/PosterItem";
-import PosterItem from "../components/PosterItem/PosterItem";
+import { Helmet } from "react-helmet";
+import VideoPlayer from "../components/VideoPlayer/VideoPlayer";
+
 const WatchMoviepage = () => {
   const { slug } = useParams();
-  const [selectedKey, setSelectedKey] = useState("1"); // Sử dụng state để lưu trạng thái option được chọn
   const [tvShows, setTvShows] = useState([]);
   const [detailMovie, setDetailMovie] = useState([]);
   const [featuredMovie, setFeaturedMovie] = useState([]);
+  const [selectedServer, setSelectedServer] = useState("");
+  const [selectedEpisode, setSelectedEpisode] = useState("");
+  const [selectedServerObject, setSelectedServerObject] = useState(null);
+  const [selectedEpisodeObject, setSelectedEpisodeObject] = useState(null);
 
   const getTVShows = useCallback(async () => {
     try {
@@ -24,6 +27,7 @@ const WatchMoviepage = () => {
       console.log(error);
     }
   }, []);
+
   const getDetailMovie = useCallback(async (slug) => {
     try {
       const res = await axiosClient.get(`/phim/${slug}`);
@@ -32,6 +36,7 @@ const WatchMoviepage = () => {
       console.log(error);
     }
   }, []);
+
   const getFeaturedMovie = useCallback(async (randomNumber) => {
     try {
       const res = await axiosClient.get(
@@ -42,66 +47,42 @@ const WatchMoviepage = () => {
       console.log(error);
     }
   }, []);
+
   useEffect(() => {
-    const randomNumber = generateRandomInteger();
     getTVShows();
     getDetailMovie(slug);
+    const randomNumber = generateRandomInteger();
     getFeaturedMovie(randomNumber);
   }, [slug]);
-  const tabs = [
-    {
-      key: "1",
-      label: "Thông tin",
-    },
-    {
-      key: "2",
-      label: "Diễn viên",
-    },
-  ];
-  const renderSummaryTab = () => (
-    <>
-      <h2>Tóm tắt</h2>
-      <p>{detailMovie?.movie?.content}</p>
-    </>
-  );
 
-  const renderActorTab = () => (
-    <>
-      <h2>Diễn viên chính</h2>
-      <Row>
-        {detailMovie.movie &&
-          detailMovie.movie.actor &&
-          detailMovie.movie.actor.map((item, index) => (
-            <Col span={6} key={index}>
-              <Row gutter={[16, 20]} className="flex align-items-center">
-                <Col span={8}>
-                  <div className={styles.avatar}>
-                    <img
-                      src="https://cdn.sforum.vn/sforum/wp-content/uploads/2023/10/avatar-trang-3.jpg"
-                      alt=""
-                    />
-                  </div>
-                </Col>
-                <Col span={16}>
-                  <p>{item}</p>
-                </Col>
-              </Row>
-            </Col>
-          ))}
-      </Row>
-    </>
-  );
+  useEffect(() => {
+    if (detailMovie.episodes && detailMovie.episodes.length > 0) {
+      setSelectedServer(detailMovie.episodes[0].server_name);
+      setSelectedEpisode(detailMovie.episodes[0].server_data[0].name);
+    }
+  }, [detailMovie.episodes]);
 
-  const contentMappings = {
-    1: renderSummaryTab(),
-    2: renderActorTab(),
-    // Thêm các mapping cho các selectedKey khác nếu cần
-  };
+  useEffect(() => {
+    if (detailMovie.episodes && detailMovie.episodes.length > 0) {
+      const serverObject = detailMovie.episodes.find(
+        (server) => server.server_name === selectedServer
+      );
+      setSelectedServerObject(serverObject);
 
-  const shuffleArray = (array) => {
-    return array.slice().sort(() => Math.random() - 0.5);
-  };
-  console.log("««««« detailMovie »»»»»", detailMovie);
+      if (serverObject && serverObject.server_data.length > 0) {
+        const episodeObject = serverObject.server_data.find(
+          (episode) => episode.name === selectedEpisode
+        );
+        setSelectedEpisodeObject(episodeObject);
+      } else {
+        setSelectedEpisodeObject(null);
+      }
+    } else {
+      setSelectedServerObject(null);
+      setSelectedEpisodeObject(null);
+    }
+  }, [detailMovie.episodes, selectedServer, selectedEpisode]);
+
   return (
     <>
       <Helmet>
@@ -115,23 +96,8 @@ const WatchMoviepage = () => {
         <Row gutter={16}>
           <Col span={17}>
             <section>
-              {detailMovie && detailMovie.movie ? (
-                <PosterMovie
-                  url_backdrop={detailMovie.movie.thumb_url}
-                  url_poster={detailMovie.movie.poster_url}
-                  name={detailMovie.movie.name}
-                  origin_name={detailMovie.movie.origin_name}
-                  release={detailMovie.movie.year}
-                  country={detailMovie.movie.country}
-                  category={detailMovie.movie.category}
-                  time={detailMovie.movie.time}
-                  type={detailMovie.movie.type}
-                  quality={detailMovie.movie.quality}
-                  lang={detailMovie.movie.lang}
-                  status={detailMovie.movie.status}
-                  episode_current={detailMovie.movie.episode_current}
-                  episode_total={detailMovie.movie.episode_total}
-                />
+              {selectedEpisodeObject ? (
+                <VideoPlayer linkEmbed={selectedEpisodeObject.link_embed} />
               ) : (
                 <div
                   style={{
@@ -143,47 +109,59 @@ const WatchMoviepage = () => {
                 </div>
               )}
             </section>
-            <section>
+            <Divider style={{ borderColor: "#727272" }} />
+            <section className={styles.conentTab}>
+              <h2>Chọn Server</h2>
               <ul className={styles.tabs}>
-                {tabs.map((tabs) => (
-                  <li
-                    key={tabs.key}
-                    onClick={() => setSelectedKey(tabs.key)}
-                    className={
-                      tabs.key === selectedKey ? styles.selectedTab : ""
-                    }
-                  >
-                    {tabs.label}
-                  </li>
-                ))}
+                {detailMovie.episodes &&
+                  detailMovie.episodes.map((server) => (
+                    <li
+                      key={server.server_name}
+                      onClick={() => setSelectedServer(server.server_name)}
+                      className={
+                        server.server_name === selectedServer
+                          ? styles.selectedTab
+                          : ""
+                      }
+                    >
+                      {server.server_name}
+                    </li>
+                  ))}
               </ul>
-              <Divider style={{ borderColor: "#727272" }} />
-              <div className={styles.conentTab}>
-                {contentMappings[selectedKey]}
-              </div>
+            </section>
+            <Divider style={{ borderColor: "#727272" }} />
+            {selectedServer && (
+              <section className={styles.conentTab}>
+                <h2>Chọn tập phim</h2>
+                <ul className={styles.tabs}>
+                  {selectedServerObject &&
+                    selectedServerObject.server_data.map((episode) => (
+                      <li
+                        key={episode.name}
+                        onClick={() => setSelectedEpisode(episode.name)}
+                        className={
+                          episode.name === selectedEpisode
+                            ? styles.selectedTab
+                            : ""
+                        }
+                      >
+                        {episode.name}
+                      </li>
+                    ))}
+                </ul>
+              </section>
+            )}
+
+            <Divider style={{ borderColor: "#727272" }} />
+            <section className={styles.conentTab}>
+              <h2>Tóm tắt</h2>
+              <p>{detailMovie?.movie?.content}</p>
             </section>
             <Divider style={{ borderColor: "#727272" }} />
             <section>
               <Row gutter={[16, 16]}>
                 {featuredMovie && featuredMovie.items ? (
-                  shuffleArray(featuredMovie.items)
-                    .slice(0, 6)
-                    .map((item) => (
-                      <Col
-                        span={4}
-                        key={item._id}
-                        className={styles.posterItem}
-                      >
-                        <PosterItem
-                          type="featuredMovie"
-                          slug={item.slug}
-                          url_poster={item.poster_url}
-                          name={item.name}
-                          quality={item.quality}
-                          lang={item.lang}
-                        />
-                      </Col>
-                    ))
+                  null
                 ) : (
                   <div
                     style={{
@@ -198,20 +176,17 @@ const WatchMoviepage = () => {
             </section>
           </Col>
           <Col span={7}>
-            {/* <Title label="Shows truyền hình" /> */}
             <div className={styles.list_movie_sider}>
               {tvShows && tvShows.items ? (
-                tvShows.items
-                  .sort(() => Math.random() - 0.5)
-                  .map((item) => (
-                    <MovieSider
-                      key={item._id}
-                      url_backdrop={item.thumb_url}
-                      name={item.name}
-                      realese={item.year}
-                      slug={item.slug}
-                    />
-                  ))
+                tvShows.items.map((item) => (
+                  <MovieSider
+                    key={item._id}
+                    url_backdrop={item.thumb_url}
+                    name={item.name}
+                    realese={item.year}
+                    slug={item.slug}
+                  />
+                ))
               ) : (
                 <div
                   style={{

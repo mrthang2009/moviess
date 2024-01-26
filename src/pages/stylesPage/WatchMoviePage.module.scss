@@ -1,5 +1,6 @@
 section {
     margin-bottom: 25px;
+
     .tabs {
         display: flex;
         list-style: none;
@@ -7,41 +8,40 @@ section {
         color: var(--text-color);
         font-weight: bold;
         font-size: 110%;
-    
+        flex-wrap: wrap;
+
         li {
             cursor: pointer;
             padding: 6px 12px;
             border-radius: 8px;
-    
+
             &:hover {
                 color: var(--main-color);
                 // background-color: var(--main-color);
             }
         }
-    
+
         .selectedTab {
             background-color: var(--main-color);
             color: var(--text-color);
-    
+
             &:hover {
                 color: var(--text-color);
             }
         }
-    
+
     }
-    .conentTab {
-        h2 {
-            margin-bottom: 15px;
-        }
-        p {
-            font-size: 130%;
-        }
-        .avatar {
-            width: 100%;
-            img {
-                width: 100%;
-                border-radius: 10px;
-            }
-        }
+
+}
+
+.conentTab {
+    h2 {
+        margin-bottom: 15px;
+        color: orange;
+    }
+
+    p {
+        font-size: 130%;
+        text-align: justify;
     }
 }

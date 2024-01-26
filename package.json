@@ -27,6 +27,7 @@
     "fsm-as-promised": "^0.17.1",
     "html2canvas": "^1.4.1",
     "html2pdf.js": "^0.10.1",
+    "http-proxy-middleware": "^2.0.6",
     "instascan": "^1.0.0",
     "jsonwebtoken": "5.2.0",
     "jspdf": "^2.5.1",
@@ -54,6 +55,7 @@
     "recharts": "^2.10.1",
     "slick-carousel": "^1.8.1",
     "swiper": "^11.0.5",
+    "video.js": "^8.10.0",
     "xlsx": "^0.18.5",
     "yarn": "^1.22.21"
   },
