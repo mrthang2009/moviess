@@ -117,7 +117,7 @@ const CartoonPage = () => {
           <Row gutter={[16, 16]}>
             {tvShows && tvShows.items ? (
               tvShows.items
-                .sort(() => Math.random() - 0.5)
+
                 .map((item) => (
                   <Col xs={24} sm={24} md={12} lg={24} xl={24} key={item._id}>
                     <MovieSider

@@ -1,16 +1,68 @@
 /* NavigationBar.module.scss */
+.nav {
+    text-align: center;
 
-.navBar {
-    color: var(--text-color);
-    background-color: var(--bodr-color);
-    min-width: 750px;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 110%;
+    i {
+        font-size: 200%;
+    }
 
-    .itemNav {
-        span:hover {
-            color: #1677ff;
+    .navBar {
+        color: var(--text-color);
+        background-color: var(--bodr-color);
+        min-width: 750px;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 110%;
+
+        .itemNav {
+            span:hover {
+                color: #1677ff;
+            }
+        }
+    }
+
+    .navVisible {
+        position: absolute;
+        top: 110px;
+        left: 10px;
+        flex-direction: column;
+        row-gap: 2.1rem;
+        z-index: 8;
+    }
+}
+
+@media only screen and (min-width: 769px) {
+    .nav {
+        .navBar {
+            display: block !important;
+
+        }
+
+        i {
+            display: none !important;
+        }
+
+        .navVisible {
+            display: none;
+        }
+    }
+
+}
+
+/* CSS cho trạng thái tablet */
+@media only screen and (max-width: 768px) {
+    .nav {
+        .navBar {
+            display: none;
+
+        }
+
+        i {
+            display: block !important;
+        }
+
+        .navVisible {
+            display: block !important;
         }
     }
 }
