@@ -11,9 +11,24 @@
 }
 .customRow {
     display: flex;
-    justify-content: space-between;
+
 
     .posterItem {
         width: calc((100% - 40px)/5);
+    }
+}
+/* CSS cho trạng thái tablet */
+@media only screen and (max-width: 769px) {
+    .customRow {   
+        .posterItem {
+            width: calc((100% - 40px)/4);
+        }
+    }
+}
+@media only screen and (max-width: 426px) {
+    .customRow {   
+        .posterItem {
+            width: calc((100% - 20px)/2);
+        }
     }
 }

@@ -65,7 +65,7 @@ const CartoonPage = () => {
       <Row gutter={20}>
         <Col xs={24} sm={24} md={24} lg={16} xl={17}>
           <Title label="Hoạt hình" url="/hoat-hinh" />
-          <Row gutter={[0, 16]} className={styles.customRow}>
+          <Row gutter={[16, 16]} className={styles.customRow}>
             {cartoon && cartoon.items ? (
               cartoon.items.map((item) => (
                 <Col
