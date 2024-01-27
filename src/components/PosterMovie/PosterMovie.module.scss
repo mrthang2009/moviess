@@ -24,7 +24,7 @@
         border-radius: 10px;
 
         .thumb {
-            width: 500px;
+            width: 100%;
             height: 380px;
             border-radius: 10px;
             overflow: hidden;
@@ -78,6 +78,64 @@
                 text-transform: uppercase;
             }
 
+        }
+    }
+}
+
+/* CSS cho trạng thái tablet */
+@media only screen and (max-width: 769px) {
+    .poster_movie {
+        height: 350px;
+
+        .desc {
+            .thumb {
+                height: 310px;
+            }
+
+            .information {
+                line-height: 1.8;
+                font-weight:500;
+                p {
+                    font-size: 15px;
+                }
+
+                h1 {
+                    font-size: 30px !important;
+                }
+
+                h2 {
+                    font-size: 20px !important;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 426px) {
+    .poster_movie {
+        height: 260px;
+
+        .desc {
+            .thumb {
+                height: 220px;
+            }
+
+            .information {
+                line-height: 1.6;
+                font-weight:500;
+                p {
+                    font-size: 15px;
+                }
+
+                h1 {
+                    font-size: 20px !important;
+                }
+
+                h2 {
+                    font-size: 15px !important;
+                    display: none;
+                }
+            }
         }
     }
 }

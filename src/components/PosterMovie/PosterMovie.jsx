@@ -26,7 +26,7 @@ const PosterMovie = ({
   return (
     <div className={styles.poster_movie}>
       {url_backdrop == "" ? null : <img src={url_backdrop} alt={name} />}
-      <Row gutter={[28, 0]} className={styles.desc}>
+      <Row gutter={[10, 0]} className={styles.desc}>
         <Col span={8} className={styles.thumb}>
           <img src={url_poster} alt={name} />
         </Col>
