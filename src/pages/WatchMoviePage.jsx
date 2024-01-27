@@ -177,8 +177,12 @@ const WatchMoviepage = () => {
               <h2>Tóm tắt</h2>
               <p>{detailMovie?.movie?.content}</p>
             </section>
-            <Divider style={{ borderColor: "#727272" }} />
             <section>
+            <Title
+              type="section"
+              label="Phim mới cập nhật"
+              url="/phim-moi-cap-nhat"
+            />
               <Row gutter={[16, 16]}>
                 {featuredMovie && featuredMovie.items ? (
                   shuffleArray(featuredMovie.items)

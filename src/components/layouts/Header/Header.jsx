@@ -7,9 +7,7 @@ const Header = () => {
     <div className="container">
       <div className={styles.header_middle}>
         <HeaderLogo />
-
         <NavigationBar />
-
         <SearchBox />
       </div>
     </div>

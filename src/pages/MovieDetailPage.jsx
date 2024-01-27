@@ -164,15 +164,22 @@ const MovieDetailPage = () => {
                 {contentMappings[selectedKey]}
               </div>
             </section>
-            <Divider style={{ borderColor: "#727272" }} />
             <section>
+            <Title
+              type="section"
+              label="Phim mới cập nhật"
+              url="/phim-moi-cap-nhat"
+            />
               <Row gutter={[16, 16]}>
                 {featuredMovie && featuredMovie.items ? (
                   shuffleArray(featuredMovie.items)
                     .slice(0, 6)
                     .map((item) => (
                       <Col
-                        span={4}
+                      sm={12}
+                      md={6}
+                      lg={4}
+                      xl={4}
                         key={item._id}
                         className={styles.posterItem}
                       >

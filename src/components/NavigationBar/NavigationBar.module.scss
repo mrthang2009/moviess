@@ -2,14 +2,10 @@
 .nav {
     text-align: center;
 
-    i {
-        font-size: 200%;
-    }
-
     .navBar {
         color: var(--text-color);
         background-color: var(--bodr-color);
-        min-width: 750px;
+        min-width:680px;
         justify-content: center;
         font-weight: bold;
         font-size: 110%;
@@ -21,13 +17,19 @@
         }
     }
 
+    i {
+        font-size: 250%;
+    }
+
     .navVisible {
-        position: absolute;
-        top: 110px;
-        left: 10px;
-        flex-direction: column;
-        row-gap: 2.1rem;
-        z-index: 8;
+
+        color: var(--text-color);
+        background-color: var(--bodr-color);
+
+        li {
+            font-weight: bold;
+            font-size: 110%;
+        }
     }
 }
 
@@ -43,7 +45,7 @@
         }
 
         .navVisible {
-            display: none;
+            display: none !important;
         }
     }
 
@@ -58,10 +60,6 @@
         }
 
         i {
-            display: block !important;
-        }
-
-        .navVisible {
             display: block !important;
         }
     }
