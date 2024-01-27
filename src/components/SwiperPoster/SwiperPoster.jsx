@@ -31,7 +31,7 @@ const SwiperPoster = ({ data }) => {
         loop={true} // Kích hoạt chế độ loop
         breakpoints={{
           // Thiết lập số lượng slide trên mỗi breakpoint
-          425: {
+          375: {
             slidesPerView: 2,
             spaceBetween: 20,
           },
