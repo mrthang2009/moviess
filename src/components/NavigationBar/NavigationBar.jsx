@@ -49,14 +49,11 @@ const Navigation = () => {
         </title>
       </Helmet>
       <nav className={styles.nav}>
-        <i onClick={() => setOpen(true)}>
-          <MenuOutlined />
-        </i>
         <Menu
           className={styles.navBar}
           mode="horizontal"
           selectedKeys={[selectedKey]} // Sử dụng selectedKeys để chỉ định key đã chọn
-          breakpoint="lg"
+          // breakpoint="lg"
         >
           {items.map((item) => (
             <Menu.Item
@@ -68,14 +65,20 @@ const Navigation = () => {
             </Menu.Item>
           ))}
         </Menu>
+        <i onClick={() => setOpen(true)}>
+          <MenuOutlined />
+        </i>
         <Drawer
-          className={styles.navVisible}
           title="Menu"
-          selectedKeys={[selectedKey]} // Sử dụng selectedKeys để chỉ định key đã chọn
+          placement="right"
           onClose={() => setOpen(false)}
           open={open}
         >
-          <Menu mode="vertical">
+          <Menu
+            className={styles.navVisible}
+            mode="vertical"
+            selectedKeys={[selectedKey]} // Sử dụng selectedKeys để chỉ định key đã chọn
+          >
             {items.map((item) => (
               <Menu.Item
                 key={item.key}

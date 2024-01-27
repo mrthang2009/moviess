@@ -19,48 +19,37 @@
 
     i {
         font-size: 250%;
+        display: none;
     }
 
     .navVisible {
 
-        color: var(--text-color);
-        background-color: var(--bodr-color);
-
-        li {
-            font-weight: bold;
-            font-size: 110%;
-        }
     }
-}
-
-@media only screen and (min-width: 769px) {
-    .nav {
-        .navBar {
-            display: block !important;
-
-        }
-
-        i {
-            display: none !important;
-        }
-
-        .navVisible {
-            display: none !important;
-        }
-    }
-
 }
 
 /* CSS cho trạng thái tablet */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 769px) {
     .nav {
         .navBar {
             display: none;
-
         }
 
         i {
             display: block !important;
+            width: 60px;
+        }
+    }
+}
+@media only screen and (max-width: 426px) {
+    .nav {
+        .navBar {
+            display: none;
+            max-width:40px;
+        }
+
+        i {
+            display: block !important;
+            width: 50px;
         }
     }
 }

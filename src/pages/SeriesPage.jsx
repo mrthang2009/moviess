@@ -6,7 +6,7 @@ import MovieSider from "../components/MovieSider/MovieSider";
 import { Pagination, Spin, Col, Row } from "antd";
 import PosterItem from "../components/PosterItem/PosterItem";
 import { useNavigate } from "react-router-dom";
-const LIMIT_PAGE = 24;
+const LIMIT_PAGE = 25;
 
 const SeriesPage = () => {
   const navigate = useNavigate();
@@ -65,14 +65,10 @@ const SeriesPage = () => {
       <Row gutter={16}>
         <Col xs={24} sm={24} md={24} lg={16} xl={17}>
           <Title label="Phim bộ" />
-          <Row gutter={[16, 16]}>
+          <Row gutter={[0, 16]} className={styles.customRow}>
             {seriesMovie && seriesMovie.items ? (
               seriesMovie.items.map((item) => (
-                <Col xs={12}
-                sm={12}
-                md={6}
-                lg={4}
-                xl={4} key={item._id} className={styles.posterItem}>
+                <Col key={item._id} className={styles.posterItem}>
                   <PosterItem
                     slug={item.slug}
                     url_poster={item.poster_url}

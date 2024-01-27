@@ -37,13 +37,15 @@
         color: var(--main-color);
     }
 }
-
-.user {
-    img {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        object-fit: cover;
-        object-position: center;
+/* CSS cho trạng thái tablet */
+@media only screen and (max-width: 769px) {
+    .search_box {
+        width: 30%;
     }
 }
+/* CSS cho trạng thái mobile */
+@media only screen and (max-width: 426px) {
+    .search_box {
+        width: 30%;
+    }
+  }

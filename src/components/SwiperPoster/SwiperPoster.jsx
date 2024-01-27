@@ -40,7 +40,7 @@ const SwiperPoster = ({ data }) => {
             spaceBetween: 15,
           },
           1024: {
-            slidesPerView: 6,
+            slidesPerView: 5,
             spaceBetween: 10,
           },
         }}

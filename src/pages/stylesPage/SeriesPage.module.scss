@@ -9,3 +9,11 @@
         color: #1677ff !important;
     }
 }
+.customRow {
+    display: flex;
+    justify-content: space-between;
+
+    .posterItem {
+        width: calc((100% - 40px)/5);
+    }
+}

@@ -44,7 +44,7 @@ const PosterItem = ({
       onClick={handleItemClick}
     >
       <div className={styles.card_cover}>
-        <div className={styles.card_imane}>
+        <div className={styles.card_image}>
           <img
             src={
               type == "featuredMovie"

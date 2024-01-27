@@ -160,7 +160,6 @@ const HomePage = () => {
           <Row gutter={[16, 16]}>
             {tvShows && tvShows.items ? (
               tvShows.items
-
                 .map((item) => (
                   <Col xs={24} sm={24} md={12} lg={24} xl={24} key={item._id} >
                     <MovieSider

@@ -32,6 +32,17 @@ section {
 
     }
 
+
+
+    .customRow {
+        display: flex;
+        justify-content: space-between;
+
+        .posterItem {
+            width: calc((100% - 40px)/5);
+        }
+    }
+
 }
 
 .conentTab {

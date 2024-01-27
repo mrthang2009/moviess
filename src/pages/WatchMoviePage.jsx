@@ -178,25 +178,17 @@ const WatchMoviepage = () => {
               <p>{detailMovie?.movie?.content}</p>
             </section>
             <section>
-            <Title
-              type="section"
-              label="Phim mới cập nhật"
-              url="/phim-moi-cap-nhat"
-            />
-              <Row gutter={[16, 16]}>
+              <Title
+                type="section"
+                label="Phim mới cập nhật"
+                url="/phim-moi-cap-nhat"
+              />
+              <Row gutter={[0, 16]} className={styles.customRow}>
                 {featuredMovie && featuredMovie.items ? (
                   shuffleArray(featuredMovie.items)
-                    .slice(0, 6)
+                    .slice(0, 5)
                     .map((item) => (
-                      <Col
-                        xs={12}
-                        sm={12}
-                        md={6}
-                        lg={4}
-                        xl={4}
-                        key={item._id}
-                        className={styles.posterItem}
-                      >
+                      <Col key={item._id} className={styles.posterItem}>
                         <PosterItem
                           type="featuredMovie"
                           slug={item.slug}
@@ -224,17 +216,16 @@ const WatchMoviepage = () => {
             <Title label="Shows truyền hình" />
             <Row gutter={[16, 16]}>
               {tvShows && tvShows.items ? (
-                tvShows.items
-                  .map((item) => (
-                    <Col xs={24} sm={24} md={12} lg={24} xl={24} key={item._id}>
-                      <MovieSider
-                        url_backdrop={item.thumb_url}
-                        name={item.name}
-                        realese={item.year}
-                        slug={item.slug}
-                      />
-                    </Col>
-                  ))
+                tvShows.items.map((item) => (
+                  <Col xs={24} sm={24} md={12} lg={24} xl={24} key={item._id}>
+                    <MovieSider
+                      url_backdrop={item.thumb_url}
+                      name={item.name}
+                      realese={item.year}
+                      slug={item.slug}
+                    />
+                  </Col>
+                ))
               ) : (
                 <div
                   style={{
