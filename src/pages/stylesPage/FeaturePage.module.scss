@@ -13,21 +13,24 @@
 .customRow {
     display: flex;
     flex-wrap: wrap;
+    gap: 10px;
 
     .posterItem {
         width: calc((100% - 40px)/5);
     }
 }
+
 /* CSS cho trạng thái tablet */
 @media only screen and (max-width: 769px) {
-    .customRow {   
+    .customRow {
         .posterItem {
             width: calc((100% - 40px)/4);
         }
     }
 }
+
 @media only screen and (max-width: 426px) {
-    .customRow {   
+    .customRow {
         .posterItem {
             width: calc((100% - 20px)/2);
         }

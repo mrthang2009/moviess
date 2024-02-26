@@ -1,22 +1,28 @@
 /* CSS cho trạng thái laptop */
-@media only screen and (max-width: 2560px) {
+@media only screen and (max-width: 2561px) {
   .container {
-    max-width: 1200px;
+    max-width: 1204px;
     margin: 0 auto;
     width: 100%;
+  }
+}
+
+@media only screen and (max-width: 1025px) {
+  .container {
+    max-width: 968px;
   }
 }
 
 /* CSS cho trạng thái tablet */
 @media only screen and (max-width: 769px) {
   .container {
-    margin:  0 15px;
+    max-width: 700px;
   }
 }
 
 /* CSS cho trạng thái mobile */
 @media only screen and (max-width: 426px) {
   .container {
-    margin: 0 15px;
+    max-width: 400px;
   }
 }

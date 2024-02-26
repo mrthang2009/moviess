@@ -37,6 +37,8 @@ section {
     .customRow {
         display: flex;
         justify-content: space-between;
+        width: 100%;
+        flex-wrap: wrap;
 
         .posterItem {
             width: calc((100% - 40px)/5);
@@ -55,4 +57,28 @@ section {
         font-size: 130%;
         text-align: justify;
     }
+}
+
+/* CSS cho trạng thái tablet */
+@media only screen and (max-width: 769px) {
+    section {
+        .customRow {
+
+            .posterItem {
+                width: calc((100% - 40px)/4);
+            }
+        }
+    }
+
+}
+
+@media only screen and (max-width: 426px) {
+    section {
+        .customRow {
+            .posterItem {
+                width: calc((100% - 20px)/2);
+            }
+        }
+    }
+
 }

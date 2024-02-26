@@ -1,4 +1,4 @@
-import styles from "./stylesPage/SinglePage.module.scss";
+import styles from "./stylesPage/FeaturePage.module.scss";
 import axiosClient from "../libraries/axiosClient";
 import { useEffect, useState, useCallback } from "react";
 import Title from "../components/Title/Title";
